@@ -1,3 +1,0 @@
-/Users/cooperz/SUSTech/2023_Fall/CS205_Cpp/CS205_Cpp-repo/OJ/cmake-build-debug/CMakeFiles/OJ.dir
-/Users/cooperz/SUSTech/2023_Fall/CS205_Cpp/CS205_Cpp-repo/OJ/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/cooperz/SUSTech/2023_Fall/CS205_Cpp/CS205_Cpp-repo/OJ/cmake-build-debug/CMakeFiles/rebuild_cache.dir
