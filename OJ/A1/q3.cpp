@@ -9,7 +9,7 @@ const double tolerance = 0.1;
 
 struct Triangle
 {
-    // To be completed
+    // To be completed--
     double side1;
     double side2;
     double side3;

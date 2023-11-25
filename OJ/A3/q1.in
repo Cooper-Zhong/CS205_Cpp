@@ -1,0 +1,9 @@
+#define mul c
+#define mul( a , b ) a * b
+#define mul( a ) a * a
+mul( 123 + ( 456 ) , 789 )
+mul( )
+mul( ( a , b ) , c )
+#undef mul( b )
+mul( hihi )
+hello( mul )
