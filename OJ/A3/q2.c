@@ -157,27 +157,6 @@ void *mmpool_alloc(mmpool_t *pool, size_t size)
     void *allocated = (void *)new_pool->data.last;
     new_pool->data.last += size;
     return allocated;
-
-    // if ((size_t)(cur->data.end - cur->data.last) >= size)
-    // { // enough space
-    //     void *allocated = (void *)cur->data.last;
-    //     cur->data.last += size;
-    //     return allocated;
-    // }
-    // // not enough space
-    // mmpool_t *new_pool = mmpool_create();
-    // if (new_pool == NULL)
-    //     return NULL;
-    // cur->data.next = new_pool;
-    // void *allocated = (void *)new_pool->data.last;
-    // new_pool->data.last += size;
-
-    // cur->data.failed++;
-    // if (pool->current->data.failed > MMPOOL_MAX_FAILED)
-    // {
-    //     pool->current = cur->data.next;
-    // }
-    // return allocated;
 }
 
 /**
@@ -310,7 +289,6 @@ int main()
     {
         scanf("%d", &op);
         printf("[DEBUG] Query: %d, Operator: %d\n", q, op);
-
         if (op == 1)
             pool = mmpool_create();
         else if (op == 2)

@@ -200,7 +200,6 @@ void test()
         da->entry[i] = db->entry[i] = i;
 
     Matrix a, b, c;
-    load_data(a, da, 0, 3, 2); // the ROI is the whole matrix
     load_data(b, db, 0, 2, 3);
     print_matrix(a);
     /*

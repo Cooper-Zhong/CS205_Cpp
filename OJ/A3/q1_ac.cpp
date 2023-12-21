@@ -11,15 +11,12 @@
 
 
 using namespace std;
-//vector<char> whiteSpace = {9, 10, 11, 12, 13, 32};
 
-//attention: whitespace includes \n, \t, \r, \v, \f, ' '
 
 struct {
     string name;
     int paraCnt;
     vector <string> parameters;
-    string body;
     vector <string> body_tokens;
 } typedef functionMacro;
 
@@ -37,14 +34,12 @@ void handle_code(const string &code) {
 
     // replace function and variable
     bool isFunc = false;
-//    stack<char> st;
     int paraCnt = 0;
     int bracketCnt = 0;
     vector <string> parameters;
     string para;
     int funcStart = 0;
     string func_name;
-    bool has_comma = false;
 
     for (int i = 0; i < tokens.size(); i++) {
         s = tokens[i];
@@ -74,7 +69,6 @@ void handle_code(const string &code) {
                             // found
                             found = true;
                             vector <string> newbody_tokens = f.body_tokens;
-//                            cout << "debug: " << newbody << endl;
 
                             for (int j = 0; j < f.body_tokens.size(); ++j) {
                                 for (int k = 0; k < f.paraCnt; ++k) {
@@ -84,22 +78,6 @@ void handle_code(const string &code) {
                                     }
                                 }
                             }
-
-
-//                            for (int k = 0; k < f.paraCnt; ++k) {
-//                                string defpara = f.parameters[k];
-//
-//                                int pos = newbody.find(defpara);
-//                                while (pos != string::npos) { // replace all
-//                                    newbody.erase(pos, defpara.size());
-//                                    newbody.insert(pos, parameters[k]);
-//                                    pos = newbody.find(defpara, pos + parameters[k].size());
-//                                }
-//                            }
-
-
-
-
                             string newbody = "";
                             for (string s: newbody_tokens) {
                                 newbody += (s + " ");
@@ -110,23 +88,14 @@ void handle_code(const string &code) {
                     }
                     if (!found) { // not found,print out original
                         for (int j = funcStart; j <= i; ++j) {
-//                            cout << "debug: " << tokens[j] << " ";
                             cout << tokens[j] << " ";
                         }
                     }
-                    paraCnt = 0;
-                    parameters = vector<string>();
-                    para = "";
-                    funcStart = 0;
-                    func_name = "";
                     isFunc = false;
-                    bracketCnt = 0;
 
                 }
             } else if (s == "," && bracketCnt == 1) { // mul( ( a , b ) , c ) only 2 parameters
-                has_comma = true;
                 paraCnt++;
-//                cout << "debug: " << para << endl;
                 parameters.push_back(para);
                 para = "";
             } else {
@@ -204,29 +173,12 @@ void handle_def(const string &line) {
         func->name = name;
         func->paraCnt = paraCnt;
         // find body
-        string body;
         vector <string> body_tokens;
         while (i < tokens.size()) {
             body_tokens.push_back(tokens[i]);
-            body += (tokens[i] + " ");
             i++;
         }
 
-
-        // 把body中的参数换成 &1, &2, &3 ...
-//        int pos = 0;
-//        for (int k = 0; k < func->paraCnt; ++k) {
-//            string defpara = parameters[k];
-//            pos = body.find(defpara);
-//            while (pos != string::npos) { // replace all
-//                body.erase(pos, defpara.size());
-//                body.insert(pos, ".." + to_string(k + 1));
-//                pos = body.find(defpara, pos + 2);
-//            }
-//        }
-
-
-        func->body = body;
         func->body_tokens = body_tokens;
         func->parameters = parameters;
         functionMap.push_back(*func);
