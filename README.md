@@ -1,2 +1,2 @@
 # CS205_Cpp
-2023 Fall CS205 C/C++ Program Desgin, by prof.Zheng feng
+SUSTech 2023 Fall CS205 C/C++ Program Desgin, by prof.Feng Zheng.
